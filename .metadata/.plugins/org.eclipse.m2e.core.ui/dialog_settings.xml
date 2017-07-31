@@ -62,6 +62,7 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="com.funnybear.siteService"/>
 			<item value="com.funnybear.service"/>
 			<item value="com.funnybear.personalSiteService"/>
 		</list>
@@ -69,6 +70,7 @@
 			<item value="com.funnybear"/>
 		</list>
 		<list key="artifactId">
+			<item value="siteService"/>
 			<item value="service"/>
 			<item value="personalSiteService"/>
 		</list>
