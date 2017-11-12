@@ -19,7 +19,13 @@ public class PostController {
 
 	@RequestMapping(value = "/listAllPosts", method = RequestMethod.GET, headers = "Accept=application/json")
 	public List<Post> listAllPosts() {
-		List<Post> posts = postDAO.list();
+		List<Post> posts = postDAO.listWithoutContent();
 		return posts;
+	}
+	
+	@RequestMapping(value = "/getPostDetail/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
+	public Post getPostDetail(@PathVariable int id) {
+		Post post = postDAO.getPost(id);
+		return post;
 	}
 }

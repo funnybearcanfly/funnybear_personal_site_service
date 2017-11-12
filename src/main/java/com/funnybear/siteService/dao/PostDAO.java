@@ -5,5 +5,6 @@ import java.util.List;
 import com.funnybear.siteService.model.Post;
 
 public interface PostDAO {
-	public List<Post> list();
+	public List<Post> listWithoutContent();
+	public Post getPost(int id);
 }
