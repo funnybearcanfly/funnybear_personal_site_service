@@ -1,11 +1,13 @@
 package com.funnybear.siteService.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.transform.Transformers;
 
@@ -17,22 +19,23 @@ public class PostDAOImpl implements PostDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Post> listWithoutContent(){
+	public List<Post> listWithoutContent() {
 		Session session = this.sessionFactory.openSession();
 		Criteria cr = session.createCriteria(Post.class)
-			    .setProjection(Projections.projectionList()
-			      .add(Projections.property("id"), "id")
-			      .add(Projections.property("authurName"), "authurName")
-			      .add(Projections.property("lastModifiedTime"), "lastModifiedTime")
-			      .add(Projections.property("title"), "title")
-			      .add(Projections.property("tag"), "tag")
-			      .add(Projections.property("category"), "category")
-			      .add(Projections.property("description"), "description"))
-			    .setResultTransformer(Transformers.aliasToBean(Post.class));
+				.setProjection(Projections.projectionList().add(Projections.property("id"), "id")
+						.add(Projections.property("authurName"), "authurName")
+						.add(Projections.property("lastModifiedTime"), "lastModifiedTime")
+						.add(Projections.property("title"), "title").add(Projections.property("tag"), "tag")
+						.add(Projections.property("category"), "category")
+						.add(Projections.property("description"), "description"))
+				.setResultTransformer(Transformers.aliasToBean(Post.class))
+				.addOrder(Order.desc("id"));
+
 		List<Post> posts = cr.list();
+		
 		session.close();
 		return posts;
 	}
