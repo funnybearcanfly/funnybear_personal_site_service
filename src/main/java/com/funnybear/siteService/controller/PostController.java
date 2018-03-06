@@ -23,9 +23,9 @@ public class PostController {
 		return posts;
 	}
 	
-	@RequestMapping(value = "/getPostDetail/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
-	public Post getPostDetail(@PathVariable int id) {
-		Post post = postDAO.getPost(id);
+	@RequestMapping(value = "/getPostDetail/{key}", method = RequestMethod.GET, headers = "Accept=application/json")
+	public Post getPostDetail(@PathVariable String key) {
+		Post post = postDAO.getPost(key);
 		return post;
 	}
 }

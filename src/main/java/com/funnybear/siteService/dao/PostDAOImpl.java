@@ -1,6 +1,5 @@
 package com.funnybear.siteService.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -26,16 +25,15 @@ public class PostDAOImpl implements PostDAO {
 		Session session = this.sessionFactory.openSession();
 		Criteria cr = session.createCriteria(Post.class)
 				.setProjection(Projections.projectionList().add(Projections.property("id"), "id")
-						.add(Projections.property("authurName"), "authurName")
+						.add(Projections.property("key"), "key").add(Projections.property("authurName"), "authurName")
 						.add(Projections.property("lastModifiedTime"), "lastModifiedTime")
 						.add(Projections.property("title"), "title").add(Projections.property("tag"), "tag")
 						.add(Projections.property("category"), "category")
 						.add(Projections.property("description"), "description"))
-				.setResultTransformer(Transformers.aliasToBean(Post.class))
-				.addOrder(Order.desc("id"));
+				.setResultTransformer(Transformers.aliasToBean(Post.class)).addOrder(Order.desc("id"));
 
 		List<Post> posts = cr.list();
-		
+
 		session.close();
 		return posts;
 	}
@@ -45,6 +43,16 @@ public class PostDAOImpl implements PostDAO {
 		Session session = this.sessionFactory.openSession();
 		Query query = session.createQuery("from Post WHERE id=:uid");
 		query.setParameter("uid", id);
+		Post post = (Post) query.uniqueResult();
+		session.close();
+		return post;
+	}
+
+	@Override
+	public Post getPost(String key) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("from Post WHERE key=:ukey");
+		query.setParameter("ukey", key);
 		Post post = (Post) query.uniqueResult();
 		session.close();
 		return post;

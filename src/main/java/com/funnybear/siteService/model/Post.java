@@ -16,6 +16,8 @@ public class Post {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "key")
+	private String key;
 	@Column(name = "authur_name")
 	private String authurName;
 	@Column(name = "last_modified_time")
@@ -39,6 +41,14 @@ public class Post {
 		this.id = id;
 	}
 
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+	
 	public String getAuthurName() {
 		return authurName;
 	}

@@ -7,4 +7,5 @@ import com.funnybear.siteService.model.Post;
 public interface PostDAO {
 	public List<Post> listWithoutContent();
 	public Post getPost(int id);
+	public Post getPost(String key);
 }
