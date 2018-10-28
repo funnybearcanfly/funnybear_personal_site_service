@@ -25,10 +25,11 @@ public class PostDAOImpl implements PostDAO {
 		Session session = this.sessionFactory.openSession();
 		Criteria cr = session.createCriteria(Post.class)
 				.setProjection(Projections.projectionList().add(Projections.property("id"), "id")
-						.add(Projections.property("key"), "key").add(Projections.property("authurName"), "authurName")
+						.add(Projections.property("key"), "key")
+						.add(Projections.property("authurName"), "authurName")
 						.add(Projections.property("lastModifiedTime"), "lastModifiedTime")
-						.add(Projections.property("title"), "title").add(Projections.property("tag"), "tag")
-						.add(Projections.property("category"), "category")
+						.add(Projections.property("title"), "title")
+						.add(Projections.property("tag"), "tag")
 						.add(Projections.property("description"), "description"))
 				.setResultTransformer(Transformers.aliasToBean(Post.class)).addOrder(Order.desc("id"));
 

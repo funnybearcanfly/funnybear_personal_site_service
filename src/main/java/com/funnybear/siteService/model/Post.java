@@ -26,8 +26,8 @@ public class Post {
 	private String title;
 	@Column(name = "tag")
 	private String tag;
-	@Column(name = "category")
-	private String category;
+	@Column(name = "keyword")
+	private String keyword;
 	@Column(name = "description")
 	private String description;
 	@Column(name = "content")
@@ -81,12 +81,12 @@ public class Post {
 		this.tag = tag;
 	}
 
-	public String getCategory() {
-		return category;
+	public String getKeyword() {
+		return keyword;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 
 	public String getDescription() {
